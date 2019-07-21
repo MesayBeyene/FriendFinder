@@ -116,10 +116,130 @@
           <option value="5" selected>5 (Strongly Agree)</option>
         </select>
 
+        <h3><strong>Question 7</strong></h3>
+        <h4>I love Traveling</h4>
+        <select data-placeholder="" class="chosen-select" id="q1">
+          <option value=""></option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5" selected>5 (Strongly Agree)</option>
+        </select>
+
+        <h3><strong>Question 8</strong></h3>
+        <h4>I love going out than staying home.</h4>
+        <select data-placeholder="" class="chosen-select" id="q1">
+          <option value=""></option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5" selected>5 (Strongly Agree)</option>
+        </select>
+
+        <h3><strong>Question 9</strong></h3>
+        <h4>I love going out than staying home.</h4>
+        <select data-placeholder="" class="chosen-select" id="q1">
+          <option value=""></option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5" selected>5 (Strongly Agree)</option>
+        </select>
+
+        <h3><strong>Question 9</strong></h3>
+        <h4>I love going out than staying home.</h4>
+        <select data-placeholder="" class="chosen-select" id="q1">
+          <option value=""></option>
+          <option value="1">1 (Strongly Disagree)</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5" selected>5 (Strongly Agree)</option>
+        </select>
         <footer class="footer">
-            <a class="container">
-            <p><a href="#">API Friends List </a>  <!--| <My href="#"> My GitHub Repo</p>--></p> 
+          <a class="container">
+          <p><a href="#">API Friends List </a>  |<a My href="#"> My GitHub Repo</a></p></p> 
+          </div>
+      </footer>
+
+      <div id="resultsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+              <h2 class="modal-title"><strong>Best Match</strong></h2>
             </div>
-        </footer>
+  
+            <div class="modal-body">
+              <h2 id="matchName"></h2>
+              <img
+                id="matchImg"
+                
+                alt="Placeholder image in case user pic doesn't show"
+              />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <script type="text/javascript">
+    $("#submit").on("click", function() {
+
+        function validateForm() {
+            var isValid = true;
+            $(".form-control").each(function() {
+                if ($(this).val() === "") {
+                  isValid = false;
+                }
+            });
+            $(".chosen-select").each(function() {
+                if ($(this).val() === "") {
+                  isValid = false;
+                }
+            });
+            return isValid;
+            }
+
+            if (validateForm()) {
+              var userData = {
+                name: $("#name").val(),
+                photo: $("#photo").val(),
+                scores: [
+                  $("#q1").val(),
+                  $("#q2").val(),
+                  $("#q3").val(),
+                  $("#q4").val(),
+                  $("#q5").val(),
+                  $("#q6").val(),
+                  $("#q7").val(),
+                  $("#q8").val(),
+                  $("#q9").val(),
+                  $("#q10").val()
+                ]
+              };
+
+      //Grab the current URL
+    var currentURL = window.location.origin;
+
+    $.post(currentURL + "/api/friends",userData, function(data){
+      alert("working");
+      $("#resultsModal").modal("toggle");
+    });
+  };
+});
+            
+  </script>
+
+    
 </body>
 </html>
