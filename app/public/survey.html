@@ -149,7 +149,7 @@
           <option value="5" selected>5 (Strongly Agree)</option>
         </select>
 
-        <h3><strong>Question 9</strong></h3>
+        <h3><strong>Question 10</strong></h3>
         <h4>I love going out than staying home.</h4>
         <select data-placeholder="" class="chosen-select" id="q1">
           <option value=""></option>
@@ -159,6 +159,10 @@
           <option value="4">4</option>
           <option value="5" selected>5 (Strongly Agree)</option>
         </select>
+
+        <br>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
+          Submit</button>
         <footer class="footer">
           <a class="container">
           <p><a href="#">API Friends List </a>  |<a My href="#"> My GitHub Repo</a></p></p> 
@@ -176,10 +180,10 @@
             </div>
   
             <div class="modal-body">
-              <h2 id="matchName"></h2>
+              <h2 id="matchName">Match Name</h2>
               <img
                 id="matchImg"
-                
+                src=""
                 alt="Placeholder image in case user pic doesn't show"
               />
             </div>
@@ -232,8 +236,12 @@
     var currentURL = window.location.origin;
 
     $.post(currentURL + "/api/friends",userData, function(data){
-      alert("working");
+      console.log(data);
+       $("#matchName").text(data.name);
+       $("#matchImg").attr("src",data.photo);
+      //  $("#my_image").attr("src","second.jpg");
       $("#resultsModal").modal("toggle");
+     
     });
   };
 });
